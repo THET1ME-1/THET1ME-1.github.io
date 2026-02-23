@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DebtMate — Учёт долгов | S&T Company</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'st-dark': '#3b0b0a',
+                        'st-burgundy': '#551314',
+                        'st-brown': '#613931',
+                        'st-rose': '#bd9b8f',
+                        'st-cream': '#f2ddcb',
+                    },
+                    fontFamily: {
+                        'display': ['Space Grotesk', 'sans-serif'],
+                        'body': ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .grain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 50;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(242, 221, 203, 0.1);
+        }
+        .phone-mockup {
+            box-shadow: 0 50px 100px -20px rgba(59, 11, 10, 0.5);
+            border: 1px solid rgba(242, 221, 203, 0.2);
+        }
+    </style>
+</head>
+<body class="font-body bg-st-dark text-st-cream overflow-x-hidden selection:bg-st-rose selection:text-st-dark">
+
+    <div class="grain"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-40 top-0 transition-all duration-500" id="navbar">
+        <div class="absolute inset-0 bg-st-dark/80 backdrop-blur-xl border-b border-st-rose/10"></div>
+        <div class="container mx-auto px-6 py-4 relative">
+            <div class="flex items-center justify-between">
+                <a href="../index.html" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-st-burgundy to-st-brown flex items-center justify-center transform group-hover:rotate-6 transition-transform duration-300">
+                        <i data-lucide="arrow-left" class="w-5 h-5 text-st-cream"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-display font-bold text-lg tracking-tight text-st-cream">S&T</span>
+                        <span class="text-[10px] uppercase tracking-widest text-st-rose/70">Назад</span>
+                    </div>
+                </a>
+
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="#overview" class="text-sm font-medium text-st-rose hover:text-st-cream transition-colors duration-300">Обзор</a>
+                    <a href="#features" class="text-sm font-medium text-st-rose hover:text-st-cream transition-colors duration-300">Возможности</a>
+                    <a href="#screenshots" class="text-sm font-medium text-st-rose hover:text-st-cream transition-colors duration-300">Скриншоты</a>
+                </div>
+
+                <a href="#download" class="px-6 py-2.5 bg-st-cream text-st-dark rounded-full font-semibold text-sm hover:bg-white transition-all transform hover:scale-105">
+                    Скачать
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center pt-32 pb-20 overflow-hidden">
+        <div class="absolute inset-0 bg-st-dark">
+            <div class="absolute top-1/4 right-1/4 w-96 h-96 bg-st-burgundy/20 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-1/4 left-1/4 w-96 h-96 bg-st-brown/20 rounded-full blur-3xl"></div>
+        </div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card mb-6 border border-st-rose/20">
+                        <span class="text-xs font-medium text-st-rose uppercase tracking-widest">S&T Company • 2026</span>
+                    </div>
+
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-st-cream to-st-rose flex items-center justify-center shadow-lg">
+                            <img src="https://static.photos/minimal/200x200/77" alt="DebtMate Logo" class="w-12 h-12 object-contain rounded-lg">
+                        </div>
+                        <div>
+                            <h1 class="font-display text-5xl md:text-6xl font-bold text-st-cream">DebtMate</h1>
+                        </div>
+                    </div>
+
+                    <p class="text-xl text-st-rose/80 mb-8 leading-relaxed">
+                        Простой и безопасный учёт личных долгов. Никаких сложных таблиц и бухгалтерских терминов — только чистая статистика и понятный интерфейс.
+                    </p>
+
+                    <div class="flex flex-wrap gap-4 mb-12">
+                        <a href="https://play.google.com/store/apps/details?id=com.stgroup.debtmate" target="_blank" rel="noopener noreferrer" class="px-8 py-4 bg-st-cream text-st-dark rounded-full font-semibold text-sm hover:bg-white transition-all duration-300 transform hover:scale-105 shadow-lg shadow-st-cream/20 flex items-center gap-2">
+                            <i data-lucide="download" class="w-5 h-5"></i>
+                            Google Play
+                        </a>
+                    </div>
+
+                    <div class="flex items-center gap-6 text-sm text-st-rose/60">
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="shield-check" class="w-4 h-4"></i>
+                            <span>Шифрование данных</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="smartphone" class="w-4 h-4"></i>
+                            <span>iOS & Android</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative flex justify-center">
+                    <div class="relative w-[300px] h-[600px] rounded-[3rem] overflow-hidden phone-mockup bg-st-dark">
+                        <img src="https://static.photos/technology/551314/bd9b8f/320x640/123" alt="DebtMate App Interface" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-st-dark/30 to-transparent"></div>
+                    </div>
+                    <div class="absolute -z-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-st-rose/20 rounded-full blur-3xl"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Grid -->
+    <section id="features" class="py-24 relative bg-st-burgundy/5">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="text-sm font-medium text-st-rose uppercase tracking-widest mb-4 block">Возможности</span>
+                <h2 class="font-display text-4xl md:text-5xl font-bold text-st-cream">Всё под контролем</h2>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <div class="glass-card rounded-2xl p-8 hover-lift border border-st-rose/10">
+                    <div class="w-14 h-14 rounded-xl bg-st-cream/10 flex items-center justify-center mb-6">
+                        <i data-lucide="lock" class="w-7 h-7 text-st-rose"></i>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-st-cream mb-3">Приватность</h3>
+                    <p class="text-st-rose/70 leading-relaxed">
+                        Все данные хранятся локально или шифруются end-to-end. Никто, кроме вас, не имеет доступа к финансовой информации.
+                    </p>
+                </div>
+
+                <div class="glass-card rounded-2xl p-8 hover-lift border border-st-rose/10">
+                    <div class="w-14 h-14 rounded-xl bg-st-cream/10 flex items-center justify-center mb-6">
+                        <i data-lucide="bell" class="w-7 h-7 text-st-rose"></i>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-st-cream mb-3">Напоминания</h3>
+                    <p class="text-st-rose/70 leading-relaxed">
+                        Умные уведомления о приближающихся сроках платежей. Никогда не пропустите важную дату.
+                    </p>
+                </div>
+
+                <div class="glass-card rounded-2xl p-8 hover-lift border border-st-rose/10">
+                    <div class="w-14 h-14 rounded-xl bg-st-cream/10 flex items-center justify-center mb-6">
+                        <i data-lucide="file-text" class="w-7 h-7 text-st-rose"></i>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-st-cream mb-3">Отчёты</h3>
+                    <p class="text-st-rose/70 leading-relaxed">
+                        Экспортируйте детальные отчёты в PDF для распечатки или отправки контрагентам.
+                    </p>
+                </div>
+
+                <div class="glass-card rounded-2xl p-8 hover-lift border border-st-rose/10">
+                    <div class="w-14 h-14 rounded-xl bg-st-cream/10 flex items-center justify-center mb-6">
+                        <i data-lucide="users" class="w-7 h-7 text-st-rose"></i>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-st-cream mb-3">Контакты</h3>
+                    <p class="text-st-rose/70 leading-relaxed">
+                        Связывайте долги с контактами из телефона. Быстрый доступ к истории взаиморасчётов с каждым человеком.
+                    </p>
+                </div>
+
+                <div class="glass-card rounded-2xl p-8 hover-lift border border-st-rose/10">
+                    <div class="w-14 h-14 rounded-xl bg-st-cream/10 flex items-center justify-center mb-6">
+                        <i data-lucide="trending-up" class="w-7 h-7 text-st-rose"></i>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-st-cream mb-3">Аналитика</h3>
+                    <p class="text-st-rose/70 leading-relaxed">
+                        Наглядные графики динамики долгов. Видьте полную картину своих финансов в одном экране.
+                    </p>
+                </div>
+
+                <div class="glass-card rounded-2xl p-8 hover-lift border border-st-rose/10">
+                    <div class="w-14 h-14 rounded-xl bg-st-cream/10 flex items-center justify-center mb-6">
+                        <i data-lucide="moon" class="w-7 h-7 text-st-rose"></i>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-st-cream mb-3">Тёмная тема</h3>
+                    <p class="text-st-rose/70 leading-relaxed">
+                        Приятный для глаз интерфейс в любое время суток. Автоматическое переключение по расписанию.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Screenshots -->
+    <section id="screenshots" class="py-24 relative">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="text-sm font-medium text-st-rose uppercase tracking-widest mb-4 block">Интерфейс</span>
+                <h2 class="font-display text-4xl md:text-5xl font-bold text-st-cream">Чистый дизайн</h2>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <div class="rounded-3xl overflow-hidden phone-mockup aspect-[9/19] max-w-[280px] mx-auto">
+                    <img src="https://static.photos/technology/551314/bd9b8f/320x640/124" alt="DebtMate Screen 1" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                </div>
+                <div class="rounded-3xl overflow-hidden phone-mockup aspect-[9/19] max-w-[280px] mx-auto md:mt-12">
+                    <img src="https://static.photos/technology/551314/bd9b8f/320x640/125" alt="DebtMate Screen 2" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                </div>
+                <div class="rounded-3xl overflow-hidden phone-mockup aspect-[9/19] max-w-[280px] mx-auto">
+                    <img src="https://static.photos/technology/551314/bd9b8f/320x640/126" alt="DebtMate Screen 3" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download CTA -->
+    <section id="download" class="py-24 relative bg-st-burgundy/10">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="font-display text-4xl md:text-5xl font-bold text-st-cream mb-6">Готовы начать?</h2>
+            <p class="text-st-rose/80 mb-12 max-w-2xl mx-auto">Скачайте DebtMate бесплатно и начните учитывать долги по-новому. Без рекламы, без подписок.</p>
+            
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="https://play.google.com/store/apps/details?id=com.stgroup.debtmate" target="_blank" rel="noopener noreferrer" class="px-8 py-4 bg-st-cream text-st-dark rounded-full font-semibold text-sm hover:bg-white transition-all duration-300 transform hover:scale-105 shadow-lg shadow-st-cream/20 flex items-center gap-3">
+                    <i data-lucide="play" class="w-6 h-6"></i>
+                    <div class="text-left">
+                        <div class="text-[10px] uppercase tracking-wider opacity-70">Get it on</div>
+                        <div class="text-lg font-bold leading-none">Google Play</div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="mt-16 pt-8 border-t border-st-rose/10">
+                <a href="../index.html" class="inline-flex items-center gap-2 text-st-rose hover:text-st-cream transition-colors">
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                    Вернуться на главную S&T Company
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        lucide.createIcons();
+        
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-lg', 'shadow-st-burgundy/10');
+            } else {
+                navbar.classList.remove('shadow-lg', 'shadow-st-burgundy/10');
+            }
+        });
+    </script>
+</body>
+</html>
